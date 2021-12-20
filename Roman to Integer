@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int num = 0;
+       map<char, int> romanChars; 
+        romanChars.insert(pair<char, int>( 'I',1));
+        romanChars.insert(pair<char, int>( 'V',5));
+        romanChars.insert(pair<char, int>( 'X',10));
+        romanChars.insert(pair<char, int>( 'L',50));
+        romanChars.insert(pair<char, int>( 'C',100));
+        romanChars.insert(pair<char, int>( 'D',500));
+        romanChars.insert(pair<char, int>( 'M',1000));
+        
+        map<char, int>::iterator itr;
+        
+        
+        auto it = romanChars.find(s[0]);
+        num+=it->second;
+        int prev = it->second ;
+        
+        
+        for(int i = 1 ; i < s.length() ; i++){
+            it = romanChars.find(s[i]);
+            if( (it->second) > prev){
+              num -= 2*prev;
+                prev = it->second;
+                num+= it->second;
+                continue;
+            }
+           
+            num+=it->second;
+            prev = it->second;
+           
+            }
+            return num;
+        }
+    
+};
