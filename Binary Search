@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+    
+        return BinSearch(0,size(nums)-1, target, nums);
+        
+    }
+    
+    int BinSearch(int left, int right, int target, vector<int>&nums){
+        
+       int mid = left + (right-left)/2;
+        
+        if(left<=right){
+        if(nums.at(mid) == target) return mid;
+        
+        if(nums.at(mid) > target) return BinSearch(left, mid-1, target, nums);
+        
+        if(nums.at(mid) < target) return BinSearch(mid+1, right, target, nums);
+        }
+        return -1;
+        
+    
+}
+};
