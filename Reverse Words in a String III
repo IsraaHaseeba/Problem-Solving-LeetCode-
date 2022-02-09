@@ -1,0 +1,29 @@
+class Solution {    
+public:
+   string rev(string s, int beg, int end){
+       int temp;
+      
+       for(int i=beg; i<= end; i++){
+                temp = s[i];
+                s[i] = s[end];
+                s[end]=temp;
+                end--;
+                
+            }
+       return s;
+   }
+    string reverseWords(string s) {
+       int end;
+        int beg=0;
+        
+        for(int j=0; j<= s.size();j++){
+            
+            if(s[j]==' ' || j==s.size()){
+                end = j-1;
+                s=rev(s,beg, end);
+                beg=j+1;
+        }
+        }
+        return s;
+    }
+};
