@@ -1,0 +1,47 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        bool flag=false;
+        map<char, int> hash;
+        
+        for(int i=0; i<s1.length(); i++){
+            if(hash.find(s1[i])==hash.end()){
+                hash.insert(pair<char,int>(s1[i],0));
+            }
+            hash.at(s1[i])++;
+        }
+        
+        int right =0, left=0;
+        int c = hash.size();
+        while(right< s2.length()){
+            
+            if(hash.find(s2[right])!=hash.end()){
+                hash.at(s2[right])--;
+        
+                    if(hash.at(s2[right])==0){
+                       c--;
+                    } 
+            }     
+            
+           if(right-left+1<s1.length())
+                 right++;
+        
+            else if (right-left+1==s1.length()){
+                if(c==0) return true;
+                
+                if(hash.count(s2[left])){
+                    hash.at(s2[left])++;
+                
+                    if(hash.at(s2[left])==1){
+                           c++;
+                        } 
+                }
+                right++; 
+                left++;
+            }
+                       
+        }
+        
+        return false;
+    }
+};
