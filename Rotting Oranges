@@ -1,0 +1,58 @@
+class Solution {
+public:
+    
+   struct node {
+      int i;
+      int j;
+       int time;
+} ;
+    
+    int orangesRotting(vector<vector<int>>& grid) {
+       int c=0;
+        queue<node> queue;
+        for(int i=0; i< grid.size(); i++){
+            for(int j=0; j< grid[0].size(); j++){
+                if(grid[i][j]==2){
+                    queue.push({i,j,0});
+                }
+                if(grid[i][j]!=0) c++;
+            }
+        }
+        
+        int i,j,time=0,c2=0;
+        while(!queue.empty()){
+            int len=queue.size();
+            
+            while(len--){
+                i=queue.front().i;
+                j=queue.front().j;
+                time=queue.front().time;
+                queue.pop();
+                c2++;
+                int dx[] = {-1,0,+1,0};
+                int dy[] = {0,1,0,-1};
+
+                for(int ind=0; ind<4; ind++){
+                    int newx = i+dx[ind];
+                    int newy = j+dy[ind];
+
+                    if(newx>=0 && newx<grid.size() && newy>=0 && newy<grid[0].size() && grid[newx][newy] == 1){
+                        grid[newx][newy] = 2;
+                        queue.push({newx, newy, time+1});
+
+                    }
+                }
+            }
+            
+        }
+        if(c==c2) return time;
+        return -1;
+    }
+    
+    
+    
+    
+    
+    
+    
+};
