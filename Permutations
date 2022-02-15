@@ -1,0 +1,40 @@
+class Solution {
+public:
+    
+     
+    
+    void findperm(vector<vector<int>> &res,vector<int> &nums,vector<int> &perm, int flags[]){
+        if(perm.size()==nums.size()) {
+            res.push_back(perm);
+            return;
+        }
+        
+        for(int i=0; i<nums.size(); i++){
+            if(flags[i]==0){
+                flags[i]=1;
+                perm.push_back(nums[i]);
+                findperm(res,nums,perm,flags);
+                flags[i]=0;
+                perm.pop_back();
+            }
+           
+        }
+        
+    }
+    
+    
+   vector<vector<int>> permute(vector<int>& nums) {
+      vector<int> perm;
+       int flags[nums.size()];
+       vector<vector<int>> res;
+       for(int i=0; i<nums.size(); i++)
+           flags[i]=0;
+          findperm(res,nums,perm,flags); 
+       
+        
+        
+        return res;
+    }
+    
+    
+};
