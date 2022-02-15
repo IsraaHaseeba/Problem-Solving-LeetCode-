@@ -1,0 +1,19 @@
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        if(n==0) return 0;
+        uint32_t m=0;
+        int num=31-(int)log2(n);
+       
+        while(n!=0){
+            
+            m=m<<1;
+            if(n&1)  m=m|1;
+            
+            n=n>>1;
+        }
+        
+        m=m<<(num);
+        return m;
+    }
+};
