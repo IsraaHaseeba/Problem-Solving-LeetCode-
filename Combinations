@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>> res;
+    
+    void findComb(int start, vector<int> comb, int k, int n){
+        if(comb.size()==k) {
+            res.push_back(comb);
+            return;
+        }
+        
+        for(int i=start; i<=n; i++){
+            comb.push_back(i);
+            findComb(i+1,comb,k,n);
+            comb.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> comb;
+        findComb(1,comb,k, n);
+        
+        return res;
+    }
+};
